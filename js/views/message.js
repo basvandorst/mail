@@ -186,13 +186,7 @@ views.Messages = Backbone.Marionette.CompositeView.extend({
 
 	changeFlags: function(model) {
 		var unseen = model.get('flags').get('unseen');
-		var prevUnseen = model._previousAttributes.flags.unseen;
-		if(_.isUndefined(model._previousAttributes.flags.unseen)) {
-			prevUnseen = model._previousAttributes.flags.get('unseen');
-		}
-		if (unseen !== prevUnseen) {
-			this.trigger('change:unseen', model, unseen);
-		}
+		this.trigger('change:unseen', model, unseen);
 	},
 
 	setMessageFlag: function(messageId, flag, val) {
